@@ -8,42 +8,29 @@
 import SwiftUI
 import AWSMobileClient
 
+enum UserState {
+    case unknown, signedIn, signedOut
+}
+
+
 struct ContentView: View {
     
     let aws = AWSMobileClient.default()
     
-    @State var username = "lyndon.bibera@headhuntr.io"
-    @State var password = "test123456"
+    @State var userState: UserState = .unknown
     
     var body: some View {
-        Form {
-            
-            TextField("Username", text: $username)
-                .autocapitalization(.none)
-                .disableAutocorrection(true)
-            
-            SecureField("Password", text: $password)
-            
-            Button("Login") {
-                aws.getTokens { (r, e) in
-                    if let result = r {
-                        print(result.accessToken)
-                    }
-                }
-                
-                
-                
-//                aws.signIn(username: username, password: password) { (result, error) in
-//                    if let r = result {
-//                        print(result)
-//                    }
-//                    if let e = error {
-//                        print(e.localizedDescription)
-//                    }
-//                }
-                
-//                aws.signOut()
+        ZStack {
+            switch (userState) {
+            case .unknown:
+                Text("Social Media")
+            case .signedIn:
+                UserDashboard(user: "Yser")
+            case .signedOut:
+                Login()
             }
+        }.onAppear {
+            start()
         }
     }
     
@@ -51,11 +38,11 @@ struct ContentView: View {
         switch( aws.currentUserState) {
         case .signedIn:
             DispatchQueue.main.async {
-                print("Logged In")
+                userState = .signedIn
             }
         case .signedOut:
             DispatchQueue.main.async {
-                print("Signed Out")
+                userState = .signedOut
             }
         default:
             AWSMobileClient.default().signOut()
