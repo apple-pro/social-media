@@ -1,2 +1,2 @@
-# social-media-amplify
-A social media App to demonstrate Amplify
+# Social Media
+A simple social media application with Spring Boot backend
