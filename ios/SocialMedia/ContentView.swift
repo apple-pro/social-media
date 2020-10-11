@@ -8,19 +8,15 @@
 import SwiftUI
 import AWSMobileClient
 
-enum ApplicationState {
-    case unknown, signedIn, signedOut
-}
+
 
 struct ContentView: View {
     
-    let aws = AWSMobileClient.default()
-    
-    @State var userState: ApplicationState = .unknown
+    @ObservedObject var authState = AuthenticationStateObserver.instance
     
     var body: some View {
         ZStack {
-            switch (userState) {
+            switch (authState.userState) {
             case .unknown:
                 Splash()
             case .signedIn:
@@ -28,28 +24,10 @@ struct ContentView: View {
             case .signedOut:
                 Login()
             }
-        }.onAppear {
-            userStateUpdates(newUserState: aws.currentUserState, userInfo: [:])
         }
-        .background(Color.gray)
         .edgesIgnoringSafeArea(.all)
     }
     
-    func userStateUpdates(newUserState: UserState, userInfo: [String: String]) {
-        
-        switch( newUserState) {
-        case .signedIn:
-            DispatchQueue.main.async {
-                userState = .signedIn
-            }
-        case .signedOut:
-            DispatchQueue.main.async {
-                userState = .signedOut
-            }
-        default:
-            AWSMobileClient.default().signOut()
-        }
-    }
 }
 
 struct ContentView_Previews: PreviewProvider {
