@@ -7,10 +7,10 @@ import javax.persistence.Id
 class MemberProfile (
 
         @Id
-        val id: String,
+        var id: String?,
 
         var firstName: String,
         var lastName: String,
 
-        val email: String
+        var email: String
 )
