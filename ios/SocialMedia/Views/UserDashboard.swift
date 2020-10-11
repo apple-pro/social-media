@@ -11,6 +11,7 @@ import AWSMobileClient
 struct UserDashboard: View {
     
     let aws = AWSMobileClient.default()
+    let api = MockAPI.instance
     
     @State var user = ""
     @State var accessToken = ""
@@ -28,6 +29,13 @@ struct UserDashboard: View {
             Button("Access Token!") {
                 aws.getTokens { (tokens, error) in
                     accessToken = tokens?.accessToken?.tokenString ?? "ERROR"
+                }
+            }
+            
+            Button("API") {
+                let member: MemberProfile = MemberProfile(id: "test", firstName: "test", lastName: "", email: "")
+                api.save(resource: member) { (result: MemberProfile) in
+                    print("Created: \(result)")
                 }
             }
         }

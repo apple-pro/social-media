@@ -8,19 +8,27 @@
 import Foundation
 import AWSMobileClient
 
+typealias Resource = Identifiable & Codable
 typealias CompletionHandler<T> = (T) -> Void
 
 protocol API {
     
-
     // create or update a resource
-    func save<T>(resource: T, completionHandler: CompletionHandler<T>)
+    func save<T:Resource>(resource: T, completionHandler: CompletionHandler<T>)
     
     // execute a search query
-    func search<T>(page: PageParameters, completionHandler: CompletionHandler<PagedResults<T>>)
+    func search<T>(page: PageRequest, completionHandler: CompletionHandler<PageResults<T>>)
 }
 
-struct PageParameters {
+struct MemberProfile: Resource {
+    
+    let id: String?
+    let firstName: String
+    let lastName: String
+    let email: String
+}
+
+struct PageRequest {
     
     enum SortDirection {
         case asc, desc
@@ -36,7 +44,7 @@ struct PageParameters {
     let sort: [SortDirection]
 }
 
-struct PagedResults<T> {
+struct PageResults<T> {
     
     struct Page {
         let size: Int
@@ -47,10 +55,4 @@ struct PagedResults<T> {
     
     let results: [T]
     let page: Page
-}
-
-
-struct Member {
-    
-    let id: String
 }
