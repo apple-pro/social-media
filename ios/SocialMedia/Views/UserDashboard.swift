@@ -12,21 +12,28 @@ struct UserDashboard: View {
     
     let aws = AWSMobileClient.default()
     
-    let user: String
+    let user: String = ""
     
     var body: some View {
         VStack {
-            Text("Hello \(user)")
+            Text("Hello \(aws.username!)")
             
             Button("Bye!") {
                 aws.signOut()
             }
+            
+            Button("Access Token!") {
+                aws.getTokens { (tokens, error) in
+                    print("Tokens: \(tokens!)")
+                }
+            }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
 struct UserDashboard_Previews: PreviewProvider {
     static var previews: some View {
-        UserDashboard(user: "Test User")
+        UserDashboard()
     }
 }

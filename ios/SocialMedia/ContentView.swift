@@ -8,34 +8,36 @@
 import SwiftUI
 import AWSMobileClient
 
-enum UserState {
+enum ApplicationState {
     case unknown, signedIn, signedOut
 }
-
 
 struct ContentView: View {
     
     let aws = AWSMobileClient.default()
     
-    @State var userState: UserState = .unknown
+    @State var userState: ApplicationState = .unknown
     
     var body: some View {
         ZStack {
             switch (userState) {
             case .unknown:
-                Text("Social Media")
+                Splash()
             case .signedIn:
-                UserDashboard(user: "Yser")
+                UserDashboard()
             case .signedOut:
                 Login()
             }
         }.onAppear {
-            start()
+            userStateUpdates(newUserState: aws.currentUserState, userInfo: [:])
         }
+        .background(Color.gray)
+        .edgesIgnoringSafeArea(.all)
     }
     
-    func start() {
-        switch( aws.currentUserState) {
+    func userStateUpdates(newUserState: UserState, userInfo: [String: String]) {
+        
+        switch( newUserState) {
         case .signedIn:
             DispatchQueue.main.async {
                 userState = .signedIn
