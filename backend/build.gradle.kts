@@ -23,6 +23,14 @@ repositories {
 }
 
 dependencies {
+
+	//OpenAPI3 support
+	implementation("org.springdoc:springdoc-openapi-ui:1.4.8")
+	implementation("org.springdoc:springdoc-openapi-hateoas:1.4.8")
+	implementation("org.springdoc:springdoc-openapi-data-rest:1.4.8")
+	implementation("org.springdoc:springdoc-openapi-kotlin:1.4.8")
+	implementation("org.springdoc:springdoc-openapi-security:1.4.8")
+
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-hateoas")
 	implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
