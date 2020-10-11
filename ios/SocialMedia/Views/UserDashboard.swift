@@ -12,11 +12,14 @@ struct UserDashboard: View {
     
     let aws = AWSMobileClient.default()
     
-    let user: String = ""
+    @State var user = ""
+    @State var accessToken = ""
     
     var body: some View {
         VStack {
             Text("Hello \(aws.username!)")
+            
+            TextField("Access Token", text: $accessToken)
             
             Button("Bye!") {
                 aws.signOut()
@@ -24,7 +27,7 @@ struct UserDashboard: View {
             
             Button("Access Token!") {
                 aws.getTokens { (tokens, error) in
-                    print("Tokens: \(tokens!)")
+                    accessToken = tokens?.accessToken?.tokenString ?? "ERROR"
                 }
             }
         }

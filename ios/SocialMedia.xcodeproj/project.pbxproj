@@ -13,6 +13,7 @@
 		F00BDD782531D2E8007FBED8 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00BDD772531D2E8007FBED8 /* Login.swift */; };
 		F00BDD7B25329A1A007FBED8 /* Splash.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00BDD7A25329A1A007FBED8 /* Splash.swift */; };
 		F00BDD812532A097007FBED8 /* AuthenticationStateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00BDD802532A097007FBED8 /* AuthenticationStateObserver.swift */; };
+		F00BDD852532B7AF007FBED8 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00BDD842532B7AF007FBED8 /* API.swift */; };
 		F0EF0D1425315AD50059FE7A /* SocialMediaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EF0D1325315AD50059FE7A /* SocialMediaApp.swift */; };
 		F0EF0D1625315AD50059FE7A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EF0D1525315AD50059FE7A /* ContentView.swift */; };
 		F0EF0D1825315AD60059FE7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0EF0D1725315AD60059FE7A /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		F00BDD772531D2E8007FBED8 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		F00BDD7A25329A1A007FBED8 /* Splash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splash.swift; sourceTree = "<group>"; };
 		F00BDD802532A097007FBED8 /* AuthenticationStateObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationStateObserver.swift; sourceTree = "<group>"; };
+		F00BDD842532B7AF007FBED8 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		F0EF0D1025315AD50059FE7A /* SocialMedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialMedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0EF0D1325315AD50059FE7A /* SocialMediaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaApp.swift; sourceTree = "<group>"; };
 		F0EF0D1525315AD50059FE7A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				F00BDD802532A097007FBED8 /* AuthenticationStateObserver.swift */,
+				F00BDD842532B7AF007FBED8 /* API.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 				F00BDD812532A097007FBED8 /* AuthenticationStateObserver.swift in Sources */,
 				F00BDD782531D2E8007FBED8 /* Login.swift in Sources */,
 				F00BDD7B25329A1A007FBED8 /* Splash.swift in Sources */,
+				F00BDD852532B7AF007FBED8 /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
