@@ -19,7 +19,7 @@ class MockAPI: API {
         }
     }
     
-    func search<T>(page: PageRequest, completionHandler: CompletionHandler<PageResults<T>>) {
+    func search<T>(page: PageRequest, completionHandler: PageCompletionHandler<T>) {
         
     }
     
@@ -29,13 +29,10 @@ class MockAPI: API {
 //https://www.avanderlee.com/swift/json-parsing-decoding/
 extension String {
     func toJSON<T:Decodable>() -> T? {
-        guard let data = self.data(using: .utf8, allowLossyConversion: false) else { return nil }
+        guard let data = self.data(using: .utf8, allowLossyConversion: false)
+        else { return nil }
         
-        let decoder = JSONDecoder()
-        
-        let result = try? decoder.decode(T.self, from: data)
-        
-        return result
+        return try? JSONDecoder().decode(T.self, from: data)
     }
 }
 

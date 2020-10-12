@@ -5,3 +5,11 @@ spring:
         jwt:
           # https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-verifying-a-jwt.html
           jwk-set-uri: https://cognito-idp.us-east-1.amazonaws.com/us-east-xxx/.well-known/jwks.json
+
+server:
+  ssl:
+    key-store-type: PKCS12
+    key-store: classpath:local-keystore.p12
+    key-store-password: password
+    key-alias: tomcat
+  port: 8443
