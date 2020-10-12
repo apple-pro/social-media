@@ -10,7 +10,9 @@ class MemberProfile (
         var id: String?,
 
         var firstName: String,
+        var middleName: String,
         var lastName: String,
+        var gender: String,
 
         var email: String
 )

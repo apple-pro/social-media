@@ -12,11 +12,13 @@ PODS:
     - AWSCognitoIdentityProvider (= 2.17.0)
     - AWSCognitoIdentityProviderASF (= 2.17.0)
     - AWSCore (= 2.17.0)
+  - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
   - Alamofire
   - AWSCognitoIdentityProvider
   - AWSMobileClient
+  - SwiftyJSON
 
 SPEC REPOS:
   trunk:
@@ -26,6 +28,7 @@ SPEC REPOS:
     - AWSCognitoIdentityProviderASF
     - AWSCore
     - AWSMobileClient
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
@@ -34,7 +37,8 @@ SPEC CHECKSUMS:
   AWSCognitoIdentityProviderASF: 87ebf727c8429f93b4188b2ad13ad1f76ce3cefd
   AWSCore: f20f7eb426d598ab753219e41ba524c0dc6f2b5c
   AWSMobileClient: 45523613684950c049914eacbc9f19cdd9f4cc83
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: b6f73c7db868181d7ae41541dadab68325ca0a33
+PODFILE CHECKSUM: ccabd0ef71f638fe4ebef41693657bffffa5c052
 
 COCOAPODS: 1.9.3

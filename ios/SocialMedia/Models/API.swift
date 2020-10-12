@@ -8,6 +8,7 @@
 import Foundation
 import AWSMobileClient
 import Alamofire
+import SwiftyJSON
 
 //typealias Resource = Identifiable & Codable
 typealias CompletionHandler<T:Resource> = (T) -> Void
@@ -16,7 +17,7 @@ typealias PageCompletionHandler<T:Resource> = (PageResults<T>) -> Void
 protocol API {
     
     // create or update a resource
-    func save<T:Resource>(resource: T, completionHandler: CompletionHandler<T>)
+    func save<T:Resource>(resource: T, completionHandler: @escaping CompletionHandler<T>)
     
     // execute a search query
     func search<T>(page: PageRequest, completionHandler: PageCompletionHandler<T>)
@@ -28,22 +29,15 @@ protocol Resource: Identifiable, Codable {
     static var resourcePath: String { get }
 }
 
-//extension Resource {
-//
-//    var dict : [String: Any]? {
-//        guard let data = try? JSONEncoder().encode(self) else { return nil }
-//        guard let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] else { return nil }
-//        return json
-//    }
-//}
-
 struct MemberProfile: Resource {
     
     static let resourcePath = "memberProfiles"
     
     let id: String?
     let firstName: String
+    let middleName: String
     let lastName: String
+    let gender: String
     let email: String
 }
 
@@ -100,9 +94,10 @@ class BackendAPI: API {
     
     static let instance: API = BackendAPI()
     
-    let accessTokenProvider = AccessTokenProvider.instance
+    private let url = "https://localhost:8443"
+    private let accessTokenProvider = AccessTokenProvider.instance
     
-    private let af: Session = {
+    private let session: Session = {
         let manager = ServerTrustManager(evaluators: ["localhost": DisabledTrustEvaluator()])
         let configuration = URLSessionConfiguration.af.default
 
@@ -111,26 +106,28 @@ class BackendAPI: API {
     
     private init() {}
     
-    func save<T: Resource>(resource: T, completionHandler: (T) -> Void){
+    func save<T: Resource>(resource: T, completionHandler: @escaping (T) -> Void){
         
         accessTokenProvider.provide { accessToken in
             
-            let url = "https://localhost:8443/\(T.resourcePath)"
+            let resourceUrl = "\(self.url)/\(T.resourcePath)"
             
             let headers: HTTPHeaders = [
                 .authorization(bearerToken: accessToken),
                 .accept("application/json")
             ]
-        
             
-            self.af.request(url, method: .post, parameters: resource, encoder: JSONParameterEncoder.default, headers: headers).responseJSON { result in
-                if let json = result.data {
-                    print(json)
-                }
+            self.session.request(resourceUrl, method: .post, parameters: resource, encoder: JSONParameterEncoder.default, headers: headers).responseJSON { response in
                 
-                if let error = result.error {
-                    let description = error.localizedDescription
-                    print("Error: \(description)")
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    if let entity: T = try? JSONDecoder().decode(T.self, from: json.rawData()) {
+                        completionHandler(entity)
+                    }
+                case .failure(let error):
+                    let errorMessage = error.localizedDescription
+                    fatalError("TODO: handle: \(errorMessage)")
                 }
             }
         }

@@ -9,5 +9,6 @@ target 'SocialMedia' do
   pod 'AWSMobileClient'
   pod 'AWSCognitoIdentityProvider'
   pod 'Alamofire'
+  pod 'SwiftyJSON'
   
 end

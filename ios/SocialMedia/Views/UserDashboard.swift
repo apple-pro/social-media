@@ -22,7 +22,7 @@ struct UserDashboard: View {
             
             TextField("Access Token", text: $accessToken)
             
-            Button("Bye!") {
+            Button("Logout") {
                 aws.signOut()
             }
             
@@ -31,15 +31,30 @@ struct UserDashboard: View {
                     accessToken = tokens?.accessToken?.tokenString ?? "ERROR"
                 }
             }
-            
-            Button("API") {
-                let member: MemberProfile = MemberProfile(id: "test", firstName: "test", lastName: "test last", email: "test@email.com")
-                api.save(resource: member) { (result: MemberProfile) in
-                    print("Created: \(result)")
-                }
-            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .onAppear {
+            setupUser()
+        }
+    }
+    
+    func setupUser() {
+        aws.getUserAttributes { (maybeUserAttributes, error) in
+            guard let userAttributes = maybeUserAttributes else { fatalError("No User attributes") }
+            
+            // TODO - i am sure theres a non-string way to access the attribute map
+            let id = userAttributes["sub"]!
+            let firstName = userAttributes["given_name"]!
+            let middleName = userAttributes["middle_name"]!
+            let lastName = userAttributes["family_name"]!
+            let email = userAttributes["email"]!
+            let gender = userAttributes["gender"]!
+            
+            let member: MemberProfile = MemberProfile(id: id, firstName: firstName, middleName: middleName, lastName: lastName, gender: gender, email: email)
+            api.save(resource: member) { (result: MemberProfile) in
+                print("Created: \(result)")
+            }
+        }
     }
 }
 
