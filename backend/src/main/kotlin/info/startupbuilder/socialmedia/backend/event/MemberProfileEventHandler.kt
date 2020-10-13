@@ -15,6 +15,6 @@ class MemberProfileEventHandler {
     @HandleBeforeCreate
     fun beforeCreate(memberProfile: MemberProfile) {
         val principal = SecurityContextHolder.getContext().authentication.principal as Jwt
-        memberProfile.id = principal.claims["username"] as String
+        memberProfile.id = principal.claims["sub"] as String
     }
 }

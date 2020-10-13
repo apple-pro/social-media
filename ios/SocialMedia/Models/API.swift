@@ -11,13 +11,16 @@ import Alamofire
 import SwiftyJSON
 
 //typealias Resource = Identifiable & Codable
-typealias CompletionHandler<T:Resource> = (T) -> Void
+typealias CompletionHandler<T:Resource> = (Result<T,Error>) -> Void
 typealias PageCompletionHandler<T:Resource> = (PageResults<T>) -> Void
 
 protocol API {
     
     // create or update a resource
     func save<T:Resource>(resource: T, completionHandler: @escaping CompletionHandler<T>)
+    
+    //get a single entity
+    func getById<T:Resource>(id: String, completionHandler: @escaping CompletionHandler<T>)
     
     // execute a search query
     func search<T>(page: PageRequest, completionHandler: PageCompletionHandler<T>)
@@ -82,7 +85,8 @@ class AccessTokenProvider {
     
     func provide(accessTokenReceiver: @escaping (String) -> Void) {
         aws.getTokens { (tokens, error) in
-            guard let accessToken = tokens?.accessToken?.tokenString
+            //guard let accessToken = tokens?.accessToken?.tokenString
+            guard let accessToken = tokens?.idToken?.tokenString
             else { fatalError("No access token") }
             
             accessTokenReceiver(accessToken)
@@ -106,7 +110,7 @@ class BackendAPI: API {
     
     private init() {}
     
-    func save<T: Resource>(resource: T, completionHandler: @escaping (T) -> Void){
+    func save<T: Resource>(resource: T, completionHandler: @escaping (Result<T,Error>) -> Void){
         
         accessTokenProvider.provide { accessToken in
             
@@ -123,11 +127,41 @@ class BackendAPI: API {
                 case .success(let value):
                     let json = JSON(value)
                     if let entity: T = try? JSONDecoder().decode(T.self, from: json.rawData()) {
-                        completionHandler(entity)
+                        completionHandler(Result.success(entity))
                     }
                 case .failure(let error):
-                    let errorMessage = error.localizedDescription
-                    fatalError("TODO: handle: \(errorMessage)")
+                    completionHandler(Result.failure(error))
+                }
+            }
+        }
+    }
+    
+    func getById<T: Resource>(id: String, completionHandler: @escaping (Result<T,Error>) -> Void){
+        
+        accessTokenProvider.provide { accessToken in
+            
+            let resourceUrl = "\(self.url)/\(T.resourcePath)/\(id)"
+            
+            let headers: HTTPHeaders = [
+                .authorization(bearerToken: accessToken),
+                .accept("application/json")
+            ]
+            
+            self.session.request(resourceUrl, method: .get, headers: headers).responseJSON { response in
+                
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    
+                    do {
+                        let entity: T = try JSONDecoder().decode(T.self, from: json.rawData())
+                        completionHandler(.success(entity))
+                    } catch {
+                        completionHandler(.failure(error))
+                    }
+                    
+                case .failure(let error):
+                    completionHandler(.failure(error))
                 }
             }
         }

@@ -31,7 +31,11 @@ struct Login: View {
             SecureField("Password", text: $password)
             
             Button("Login") {
-                aws.signIn(username: username, password: password) { (result, error) in
+                let clientMeta = [
+                    "scope": "openid+profile+aws.cognito.signin.user.admin"
+                ]
+                
+                aws.signIn(username: username, password: password, clientMetaData: clientMeta) { (result, error) in
                     errorMessage = error?.localizedDescription
                 }
             }
