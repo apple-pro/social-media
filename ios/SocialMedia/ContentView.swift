@@ -8,8 +8,6 @@
 import SwiftUI
 import AWSMobileClient
 
-
-
 struct ContentView: View {
     
     @ObservedObject var authState = AuthenticationStateObserver.instance
