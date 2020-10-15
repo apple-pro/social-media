@@ -12,9 +12,9 @@ enum ApplicationState {
     case unknown, signedIn, signedOut
 }
 
-class AuthenticationStateObserver: ObservableObject {
+class ApplicationStateObserver: ObservableObject {
     
-    public static let instance = AuthenticationStateObserver()
+    public static let instance = ApplicationStateObserver()
     
     @Published var userState: ApplicationState = .unknown
     

@@ -12,11 +12,12 @@
 		F00BDD742531D2A5007FBED8 /* UserDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00BDD732531D2A5007FBED8 /* UserDashboard.swift */; };
 		F00BDD782531D2E8007FBED8 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00BDD772531D2E8007FBED8 /* Login.swift */; };
 		F00BDD7B25329A1A007FBED8 /* Splash.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00BDD7A25329A1A007FBED8 /* Splash.swift */; };
-		F00BDD812532A097007FBED8 /* AuthenticationStateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00BDD802532A097007FBED8 /* AuthenticationStateObserver.swift */; };
+		F00BDD812532A097007FBED8 /* ApplicationStateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00BDD802532A097007FBED8 /* ApplicationStateObserver.swift */; };
 		F00BDD852532B7AF007FBED8 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00BDD842532B7AF007FBED8 /* API.swift */; };
+		F030204B2538393300862DD3 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030204A2538393300862DD3 /* Settings.swift */; };
 		F07EE9CC2535A86E0063D128 /* SocialModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F07EE9CA2535A86E0063D128 /* SocialModel.xcdatamodeld */; };
 		F07EE9F02535A9950063D128 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07EE9EF2535A9950063D128 /* Persistence.swift */; };
-		F07EE9F42535B1C10063D128 /* PostDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07EE9F32535B1C10063D128 /* PostDashboard.swift */; };
+		F07EE9F42535B1C10063D128 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07EE9F32535B1C10063D128 /* Timeline.swift */; };
 		F0EF0D1425315AD50059FE7A /* SocialMediaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EF0D1325315AD50059FE7A /* SocialMediaApp.swift */; };
 		F0EF0D1625315AD50059FE7A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EF0D1525315AD50059FE7A /* ContentView.swift */; };
 		F0EF0D1825315AD60059FE7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0EF0D1725315AD60059FE7A /* Assets.xcassets */; };
@@ -31,11 +32,12 @@
 		F00BDD732531D2A5007FBED8 /* UserDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDashboard.swift; sourceTree = "<group>"; };
 		F00BDD772531D2E8007FBED8 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		F00BDD7A25329A1A007FBED8 /* Splash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splash.swift; sourceTree = "<group>"; };
-		F00BDD802532A097007FBED8 /* AuthenticationStateObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationStateObserver.swift; sourceTree = "<group>"; };
+		F00BDD802532A097007FBED8 /* ApplicationStateObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationStateObserver.swift; sourceTree = "<group>"; };
 		F00BDD842532B7AF007FBED8 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		F030204A2538393300862DD3 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		F07EE9CB2535A86E0063D128 /* SocialModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SocialModel.xcdatamodel; sourceTree = "<group>"; };
 		F07EE9EF2535A9950063D128 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		F07EE9F32535B1C10063D128 /* PostDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDashboard.swift; sourceTree = "<group>"; };
+		F07EE9F32535B1C10063D128 /* Timeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeline.swift; sourceTree = "<group>"; };
 		F0EF0D1025315AD50059FE7A /* SocialMedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialMedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0EF0D1325315AD50059FE7A /* SocialMediaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaApp.swift; sourceTree = "<group>"; };
 		F0EF0D1525315AD50059FE7A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -79,7 +81,8 @@
 				F00BDD7A25329A1A007FBED8 /* Splash.swift */,
 				F00BDD772531D2E8007FBED8 /* Login.swift */,
 				F00BDD732531D2A5007FBED8 /* UserDashboard.swift */,
-				F07EE9F32535B1C10063D128 /* PostDashboard.swift */,
+				F07EE9F32535B1C10063D128 /* Timeline.swift */,
+				F030204A2538393300862DD3 /* Settings.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -87,7 +90,7 @@
 		F00BDD7F2532A05C007FBED8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F00BDD802532A097007FBED8 /* AuthenticationStateObserver.swift */,
+				F00BDD802532A097007FBED8 /* ApplicationStateObserver.swift */,
 				F00BDD842532B7AF007FBED8 /* API.swift */,
 				F07EE9EF2535A9950063D128 /* Persistence.swift */,
 				F07EE9CA2535A86E0063D128 /* SocialModel.xcdatamodeld */,
@@ -254,11 +257,12 @@
 				F00BDD742531D2A5007FBED8 /* UserDashboard.swift in Sources */,
 				F0EF0D1625315AD50059FE7A /* ContentView.swift in Sources */,
 				F0EF0D1425315AD50059FE7A /* SocialMediaApp.swift in Sources */,
-				F00BDD812532A097007FBED8 /* AuthenticationStateObserver.swift in Sources */,
+				F00BDD812532A097007FBED8 /* ApplicationStateObserver.swift in Sources */,
 				F07EE9CC2535A86E0063D128 /* SocialModel.xcdatamodeld in Sources */,
-				F07EE9F42535B1C10063D128 /* PostDashboard.swift in Sources */,
+				F07EE9F42535B1C10063D128 /* Timeline.swift in Sources */,
 				F00BDD782531D2E8007FBED8 /* Login.swift in Sources */,
 				F00BDD7B25329A1A007FBED8 /* Splash.swift in Sources */,
+				F030204B2538393300862DD3 /* Settings.swift in Sources */,
 				F00BDD852532B7AF007FBED8 /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

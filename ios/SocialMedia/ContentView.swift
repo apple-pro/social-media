@@ -10,7 +10,7 @@ import AWSMobileClient
 
 struct ContentView: View {
     
-    @ObservedObject var authState = AuthenticationStateObserver.instance
+    @ObservedObject var authState = ApplicationStateObserver.instance
     
     var body: some View {
         ZStack {

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PostDashboard: View {
+struct Timeline: View {
     
     @Environment(\.managedObjectContext) private var viewContext
 
@@ -17,12 +17,28 @@ struct PostDashboard: View {
     private var pendingPosts: FetchedResults<PendingPosts>
     
     var body: some View {
-        VStack {
-            Button(action: addItem) {
-                Label("Add Item", systemImage: "plus")
-            }
-            
-            List {
+//        VStack {
+//            Button(action: addItem) {
+//                Label("Add Item", systemImage: "plus")
+//            }
+//
+//            List {
+//                ForEach(pendingPosts) { pendingPost in
+//                    VStack {
+//                        Text(pendingPost.text!)
+//                        Text("\(pendingPost.createdAt!, formatter: itemFormatter)")
+//                            .font(.subheadline)
+//                    }
+//                }
+//                .onDelete(perform: deleteItems)
+//            }
+//        }
+        
+        NavigationView {
+            ScrollView {
+                
+                WhatsOnYourMind()
+                
                 ForEach(pendingPosts) { pendingPost in
                     VStack {
                         Text(pendingPost.text!)
@@ -31,7 +47,7 @@ struct PostDashboard: View {
                     }
                 }
                 .onDelete(perform: deleteItems)
-            }
+            }.navigationTitle("Timeline")
         }
     }
     
@@ -69,6 +85,56 @@ struct PostDashboard: View {
     }
 }
 
+struct WhatsOnYourMind: View {
+    
+    @State var message = ""
+    
+    var body: some View {
+        
+        VStack {
+            HStack {
+                Text("LB")
+                    .font(.title)
+                    .foregroundColor(Color.white)
+                    .padding()
+                    .background(Color.accentColor)
+                    .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                    
+                
+                TextField("Whats on your mind?", text: $message)
+            }
+            .padding()
+            
+            HStack {
+                
+                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                    Image(systemName: "video.fill")
+                    Text("Live")
+                }).frame(maxWidth: .infinity)
+                
+                Divider()
+                
+                Button(action: {}, label: {
+                    Image(systemName: "photo.fill")
+                    Text("Photo")
+                }).frame(maxWidth: .infinity)
+                
+                Divider()
+                
+                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                    Image(systemName: "video.fill.badge.plus")
+                    Text("Room")
+                }).frame(maxWidth: .infinity)
+                
+            }
+            .padding()
+        }
+        
+    }
+}
+
+
+//TODO: remove once useless
 private let itemFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .short
@@ -78,8 +144,8 @@ private let itemFormatter: DateFormatter = {
 
 struct PostDashboard_Previews: PreviewProvider {
     static var previews: some View {
-        PostDashboard()
+        Timeline()
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-            .previewLayout(.fixed(width: 2436 / 3.0, height: 1125 / 3.0))
+            //.previewLayout(.fixed(width: 2436 / 3.0, height: 1125 / 3.0))
     }
 }
