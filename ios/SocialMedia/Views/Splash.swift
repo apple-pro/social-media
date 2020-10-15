@@ -16,7 +16,7 @@ struct Splash: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .edgesIgnoringSafeArea(.all)
-        .background(Color.blue)
+        .background(Color.accentColor)
     }
 }
 

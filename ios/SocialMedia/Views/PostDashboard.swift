@@ -78,6 +78,8 @@ private let itemFormatter: DateFormatter = {
 
 struct PostDashboard_Previews: PreviewProvider {
     static var previews: some View {
-        PostDashboard().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        PostDashboard()
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            .previewLayout(.fixed(width: 2436 / 3.0, height: 1125 / 3.0))
     }
 }
