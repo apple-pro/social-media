@@ -85,6 +85,7 @@ struct Timeline: View {
 
 struct WhatsOnYourMind: View {
     
+    @ObservedObject var appState = ApplicationStateObserver.instance
     @State var message = ""
     let messageComposedHandler: (String) -> Void
     
@@ -92,13 +93,18 @@ struct WhatsOnYourMind: View {
         
         VStack {
             HStack {
-                Text("LB")
-                    .font(.title)
-                    .foregroundColor(Color.white)
-                    .padding()
-                    .background(Color.accentColor)
-                    .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
                 
+                switch appState.userState {
+                case .signedIn(let member):
+                    Text("\(member.firstName.first)\(member.lastName.first)")
+                        .font(.title)
+                        .foregroundColor(Color.white)
+                        .padding()
+                        .background(Color.accentColor)
+                        .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                default:
+                    fatalError("")
+                }
                 
                 TextField("Whats on your mind?", text: $message, onCommit: {
                     messageComposedHandler(message)
