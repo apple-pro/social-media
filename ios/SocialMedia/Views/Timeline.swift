@@ -171,9 +171,7 @@ struct PendingPostInTimeline: View {
             
         }
         .padding()
-        .overlay(Capsule(style: .continuous)
-                    .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 5, dash: [10]))
-        )
+        .overlay(Capsule(style: .continuous).stroke(Color.accentColor, style: StrokeStyle(lineWidth: 5, dash: [10])))
     }
 }
 
