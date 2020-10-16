@@ -16,12 +16,12 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         
-        let newItem = PendingPosts(context: viewContext)
+        let newItem = PendingPost(context: viewContext)
         newItem.createdAt = Date()
         newItem.id = UUID()
         newItem.text = "My New Comment 1"
         
-        let newItem2 = PendingPosts(context: viewContext)
+        let newItem2 = PendingPost(context: viewContext)
         newItem2.createdAt = Date()
         newItem2.id = UUID()
         newItem2.text = "My New Comment 2"

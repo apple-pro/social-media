@@ -24,7 +24,7 @@ struct UserDashboard: View {
             }
             
             Settings().tabItem {
-                Image(systemName: "play.rectangle.fill")
+                Image(systemName: "play.rectangle.fill").accentColor(.red)
             }
             
             Settings().tabItem {

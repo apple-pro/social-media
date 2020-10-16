@@ -9,7 +9,9 @@ import Foundation
 import AWSMobileClient
 
 enum ApplicationState {
-    case unknown, signedIn, signedOut
+    case unknown
+    case signedIn
+    case signedOut
 }
 
 class ApplicationStateObserver: ObservableObject {
